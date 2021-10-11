@@ -1,0 +1,67 @@
+.form-group .col-form-label:after {
+  content:"*";color:red;
+}
+#school_view{
+  display: none;
+}
+#college_view{
+  display: none;
+}
+#university_view{
+  display: none;
+}
+#other_view{
+  display: none;
+}
+#certificate_view{
+  display: none;
+}
+#admission_view{
+  display: none;
+}
+#admission_college_view{
+  display: none;
+}
+#unt_view{
+  display: none;
+}
+#unt_college_view{
+  display: none;
+}
+#interview_view{
+  display: none;
+}
+#diploma_view{
+  display: none;
+}
+#interview_college_view{
+  display: none;
+}
+#fin_id{
+  display: none;
+}
+#is_fin_id{
+  display: none;
+}
+#gos_id{
+  display: none;
+}
+#prav_id{
+  display: none;
+}
+#kvo_id{
+  display: none;
+}
+#svi_id1{
+  display: none;
+}
+#svi_id2{
+  display: none;
+}
+#svi_id3{
+  display: none;
+}
+
+#iin_other{
+  display: none;
+}

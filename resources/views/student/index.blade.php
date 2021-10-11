@@ -1,0 +1,60 @@
+@extends('layouts.system')
+@section('title', 'Обучающиеся')
+@section('content')
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Обучающиеся</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Главная</a></li>
+                        <li class="breadcrumb-item active">Обучающиеся</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="{{ route('student.create') }}" class="btn btn-primary">Добавить обучающегося</a>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            @if(Session::has('info'))
+                                <div class="alert alert-primary" role="alert">
+                                    {{ Session::get('info') }}
+                                </div>
+                            @endif
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+
+                                <tr>
+                                    <th>#</th>
+                                    <th>Название</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <td>1</td>
+                                <td>Musa</td>
+                                <td>Uatbayev</td>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+@endsection
