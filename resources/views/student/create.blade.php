@@ -1,1725 +1,891 @@
 @extends('layouts.system')
-@section('title', 'Добавление')
-@section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Добавление</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Главная</a></li>
-                        <li class="breadcrumb-item active">Добавление</li>
-                    </ol>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-    <section class="content">
-        <div class="container-fluid">
-            <!-- SELECT2 EXAMPLE -->
-            <div class="card card-default">
-                <div class="card-header">
-                    <a href="{{ route('student.index') }}"><button type="button" class="btn btn-primary">Назад</button></a>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                    </div>
-                </div>
+@section('title')
+    Добавление
+@endsection
+
+@section('content')
+
+    <!--begin::Toolbar-->
+    <div class="toolbar" id="kt_toolbar">
+        <!--begin::Container-->
+        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                 data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                 class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                <!--begin::Title-->
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Добавление</h1>
+                <!--end::Title-->
+                <!--begin::Separator-->
+                <span class="h-20px border-gray-200 border-start mx-4"></span>
+                <!--end::Separator-->
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-muted">
+                        <a href="{{ route('home') }}" class="text-muted text-hover-primary">Главная страница</a>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                    </li>
+                    <li class="breadcrumb-item text-muted">Студенты</li>
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-200 w-5px h-2px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-dark">Добавление</li>
+                    <!--end::Item-->
+                </ul>
+                <!--end::Breadcrumb-->
+            </div>
+            <!--end::Page title-->
+            <div class="d-flex align-items-center py-1">
+                <a href="{{ route('student.index') }}" class="btn btn-sm btn-primary">Назад</a>
+            </div>
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Toolbar-->
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-fluid">
+            <!--begin::Invoice 2 main-->
+            <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 col-sm-12">
-                            <div class="card card-primary card-outline card-outline-tabs">
-                                <div class="card-header p-0 border-bottom-0">
-                                    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Личные данные</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-document-tab" data-toggle="pill" href="#custom-tabs-four-document" role="tab" aria-controls="custom-tabs-four-document" aria-selected="false">Документы</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-contact-tab" data-toggle="pill" href="#custom-tabs-four-contact" role="tab" aria-controls="custom-tabs-four-contact" aria-selected="false">Контактная информация</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-profession-tab" data-toggle="pill" href="#custom-tabs-four-profession" role="tab" aria-controls="custom-tabs-four-profession" aria-selected="false">Сведения о специальности</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-education-tab" data-toggle="pill" href="#custom-tabs-four-education" role="tab" aria-controls="custom-tabs-four-education" aria-selected="false">Сведения об образовании</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-musa-tab" data-toggle="pill" href="#custom-tabs-four-musa" role="tab" aria-controls="custom-tabs-four-musa" aria-selected="false">Личные достижения</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-musa-tab" data-toggle="pill" href="#custom-tabs-four-musa" role="tab" aria-controls="custom-tabs-four-musa" aria-selected="false">Приказы по движению обучающегося</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-musa-tab" data-toggle="pill" href="#custom-tabs-four-musa" role="tab" aria-controls="custom-tabs-four-musa" aria-selected="false">Сведения о трудоустройстве выпускника</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-musa-tab" data-toggle="pill" href="#custom-tabs-four-musa" role="tab" aria-controls="custom-tabs-four-musa" aria-selected="false">Льготы</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="custom-tabs-four-musa-tab" data-toggle="pill" href="#custom-tabs-four-musa" role="tab" aria-controls="custom-tabs-four-musa" aria-selected="false">Прочее</a>
-                                        </li>
+                    <nav>
+                        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                                    aria-selected="true">Личные данные
+                            </button>
+                            <button class="nav-link" id="nav-document-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-document" type="button" role="tab" aria-controls="nav-document"
+                                    aria-selected="false">Документы
+                            </button>
+                            <button class="nav-link" id="nav-profession_info-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-profession_info" type="button" role="tab"
+                                    aria-controls="nav-profession_info" aria-selected="false">Сведения о специальности
+                            </button>
+                            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
+                                    aria-selected="false">Контактная информация
+                            </button>
+
+                        </div>
+                    </nav>
+                    <form action="{{ route('student.store') }}" enctype="multipart/form-data" method="POST">
+                        @csrf
+                        <div class="tab-content" id="nav-tabContent">
+                            @if (count($errors) > 0)
+                                <div class="alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
                                     </ul>
                                 </div>
-                                <div class="card-body">
-                                    <div class="tab-content" id="custom-tabs-four-tabContent">
-                                        <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card">
-                                                        <div class="card-header p-2">
-                                                            <ul class="nav nav-pills">
-                                                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Ф.И.О.</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Прежняя ФИО (в случае изменения)</a></li>
-                                                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Загрузка фото</a></li>
-                                                            </ul>
-                                                        </div><!-- /.card-header -->
-                                                        <div class="card-body">
-                                                            <div class="tab-content">
-                                                                <div class="active tab-pane" id="activity">
-                                                                    <form class="form-horizontal" action="{{ route('student.store') }}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Фамилия</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="lastname" value="{{ old('lastname') }}" class="form-control {{ $errors->has('lastname') ? 'is-invalid':'' }}" id="inputName" placeholder="Фамилия">
-                                                                                @error('lastname')
-                                                                                <span id="" class="error invalid-feedback">{{ $message }}</span>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Имя</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="lastname" value="{{ old('firstname') }}" class="form-control {{ $errors->has('firstname') ? 'is-invalid':'' }}" id="inputName" placeholder="Имя">
-                                                                                @error('firstname')
-                                                                                <span id="" class="error invalid-feedback">{{ $message }}</span>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Отчество</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="patronymic" value="{{ old('patronymic') }}" class="form-control" id="inputName" placeholder="Отчество">
-
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">ИИН</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="iin" value="{{ old('iin') }}" class="form-control {{ $errors->has('iin') ? 'is-invalid':'' }}" id="iin">
-                                                                                @error('iin')
-                                                                                <span id="" class="error invalid-feedback">{{ $message }}</span>
-                                                                                @enderror
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Дата рождения</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="date" name="birthdate" value="{{ old('birthdate') }}" class="form-control {{ $errors->has('birthdate') ? 'is-invalid':'' }}" id="inputName" placeholder="Дата рождения">
-                                                                                @error('birthdate')
-                                                                                <span id="" class="error invalid-feedback">{{ $message }}</span>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Национальность</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="nationality_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                    <option selected="selected">Выберите национальность</option>
-                                                                                    @foreach($nationalities as $nationality)
-                                                                                        <option value="{{ $nationality->id }}" {{ old('nationality_id')==$nationality->id ? 'selected':'' }}>{{$nationality->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Пол</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="gender_id" id="" class="form-control {{ $errors->has('gender_id') ? 'is-invalid':'' }}">
-                                                                                    <option selected="selected"></option>
-                                                                                    @foreach($genders as $gender)
-                                                                                        <option value="{{ $gender->id }}" {{ old('gender_id')==$gender->id ? 'selected':'' }}>{{$gender->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                                @error('gender_id')
-                                                                                <span id="" class="error invalid-feedback">{{ $message }}</span>
-                                                                                @enderror
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Семейное положение</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="f_status_id" id="" class="form-control">
-                                                                                    @foreach($f_statuses as $f_status)
-                                                                                        <option value="{{ $f_status->id }}" {{ old('f_status_id')==$f_status->id ? 'selected':'' }}>{{$f_status->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <div class="offset-sm-2 col-sm-10">
-                                                                                <div class="checkbox">
-                                                                                    <label>
-                                                                                        <input type="checkbox" name=""> Проживает в данном городе, не иногородний
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Гражданство</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="сitizenship_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                    @foreach($сitizenships as $сitizenship)
-                                                                                        <option value="{{ $сitizenship->id }}" {{ old('сitizenship_id')==$сitizenship->id ? 'selected':'' }}>{{$сitizenship->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Страна, откуда прибыл</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="country_came_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                    @foreach($country_cames as $country_came)
-                                                                                        <option value="{{ $country_came->id }}" {{ old('country_came_id')==$country_came->id ? 'selected':'' }}>{{$country_came->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        {{ $delimiter = '' }}
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Область, откуда прибыл</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select id="region_id" name="" class="form-control">
-                                                                                    <option value="0">Выберите область/город</option>
-                                                                                    @foreach($all_regions as $all_region)
-                                                                                        <option value="{{ $all_region->id }}">
-                                                                                            {{ $all_region->name }}
-                                                                                        </option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName2" class="col-sm-2 col-form-label">Районный центр, откуда прибыл</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select id="region_code_id" name="address_code" class="form-control select2">
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName2" class="col-sm-2 col-form-label">Адрес (дом,улица)</label>
-                                                                            <div class="col-sm-10">
-                                                                                <textarea class="form-control" name="address_home" rows="2" placeholder="Населенный пункт, откуда прибыл"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                        <h5>Место рождения</h5>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName2" class="col-sm-2 col-form-label">Населенный пункт рождения (като)</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" class="form-control" id="inputName2" placeholder="Населенный пункт рождения (като)">
-                                                                            </div>
-                                                                        </div>
-                                                                        <h5>Место прописки</h5>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName2" class="col-sm-2 col-form-label">Населенный пункт прописки (като)</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" class="form-control" id="inputName2" placeholder="Населенный пункт прописки (като)">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName2" class="col-sm-2 col-form-label">Адрес прописки</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" class="form-control" id="inputName2" placeholder="Адрес прописки">
-                                                                            </div>
-                                                                        </div>
-                                                                        <h5>Место проживания</h5>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName2" class="col-sm-2 col-form-label">Населенный пункт проживания (като</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" class="form-control" id="inputName2" placeholder="Населенный пункт проживания (като">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName2" class="col-sm-2 col-form-label">Адрес проживания</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" class="form-control" id="inputName2" placeholder="Адрес проживания">
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <h5>Родители</h5>
-                                                                        <div class="form-group row">
-                                                                            <div class="offset-sm-2 col-sm-10">
-                                                                                <button type="submit" class="btn btn-primary">Добавить</button>
-                                                                            </div>
-                                                                        </div>
-                                                                        <hr>
-                                                                        <div class="form-group row">
-                                                                            <div class="offset-sm-2 col-sm-10">
-                                                                                <button type="submit" class="btn btn-danger">Добавить</button>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </form>
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                                <div class="tab-pane" id="timeline">
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-
-                                                                <div class="tab-pane" id="settings">
-                                                                    <div class="col-md-3">
-
-                                                                        <!-- Profile Image -->
-                                                                        <div class="card card-primary card-outline">
-                                                                            <div class="card-body box-profile">
-                                                                                <div class="text-center mb-3">
-                                                                                    <img class="profile-user-img img-fluid img-circle"
-                                                                                         src="{{ asset('images/def_user.png') }}"
-                                                                                         alt="User profile picture">
-                                                                                </div>
-
-                                                                                <a href="#" class="btn btn-primary btn-block"><b>Обновить</b></a>
-                                                                            </div>
-                                                                            <!-- /.card-body -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.col -->
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                            </div>
-                                                            <!-- /.tab-content -->
-                                                        </div><!-- /.card-body -->
-                                                    </div>
-                                                    <!-- /.card -->
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
+                            @endif
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                 aria-labelledby="nav-home-tab">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Фамилия</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control @error('lastname') is-invalid @enderror"
+                                               name="lastname" value="{{ old('lastname') }}">
+                                        @error('lastname')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Имя</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control @error('firstname') is-invalid @enderror"
+                                               name="firstname" value="{{ old('firstname') }}">
+                                        @error('firstname')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Отчество</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="patronymic"
+                                               value="{{ old('patronymic') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Доступ к системе</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="active" checked {{(old('status') == 'active') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio1">Да</label>
                                         </div>
-                                        <div class="tab-pane fade" id="custom-tabs-four-document" role="tabpanel" aria-labelledby="custom-tabs-four-document-tab">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="tab-content">
-                                                                <div class="active tab-pane" id="activity">
-                                                                    <form class="form-horizontal" action="{{ route('student.store') }}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Документ, удостоверяющий личность</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="identity_document_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                    @foreach($identity_documents as $identity_document)
-                                                                                        <option value="{{ $identity_document->id }}" {{ old('identity_document_id')==$identity_document->id ? 'selected':'' }}>{{$identity_document->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Номер документа, удостоверяющего личность</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="doc_name" value="{{ old('doc_name') }}" class="form-control" id="inputName" placeholder="Номер документа, удостоверяющего личность">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Серия документа, удостоверяющего личность</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="ser_doc_name" value="{{ old('ser_doc_name') }}" class="form-control" id="inputName" placeholder="Серия документа, удостоверяющего личность">
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Дата выдачи документа, удостоверяющего личность</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="date" name="give_date" value="{{ old('give_date') }}" class="form-control" id="inputName" placeholder="Дата выдачи документа, удостоверяющего личность">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Срок действия документа, удостоверяющего личность</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="date" name="srok_date" value="{{ old('srok_date') }}" class="form-control" id="inputName" placeholder="Срок действия документа, удостоверяющего личность">
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Выбрать орган, выдавший документ, удостоверяющий личность</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="organ_id" id="" class="form-control">
-                                                                                    <option selected="selected"></option>
-                                                                                    @foreach($sel_identity_documents as $sel_identity_document)
-                                                                                        <option value="{{ $sel_identity_document->id }}" {{ old('sel_identity_document')==$sel_identity_document->id ? 'selected':'' }}>{{$sel_identity_document->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <hr>
-                                                                        <div class="form-group row">
-                                                                            <div class="offset-sm-2 col-sm-10">
-                                                                                <button type="submit" class="btn btn-danger">Добавить</button>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </form>
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                                <div class="tab-pane" id="timeline">
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-
-                                                                <div class="tab-pane" id="settings">
-                                                                    <div class="col-md-3">
-
-                                                                        <!-- Profile Image -->
-                                                                        <div class="card card-primary card-outline">
-                                                                            <div class="card-body box-profile">
-                                                                                <div class="text-center mb-3">
-                                                                                    <img class="profile-user-img img-fluid img-circle"
-                                                                                         src="{{ asset('images/def_user.png') }}"
-                                                                                         alt="User profile picture">
-                                                                                </div>
-
-                                                                                <a href="#" class="btn btn-primary btn-block"><b>Обновить</b></a>
-                                                                            </div>
-                                                                            <!-- /.card-body -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.col -->
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                            </div>
-                                                            <!-- /.tab-content -->
-                                                        </div><!-- /.card-body -->
-                                                    </div>
-                                                    <!-- /.card -->
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="custom-tabs-four-contact" role="tabpanel" aria-labelledby="custom-tabs-four-contact-tab">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="tab-content">
-                                                                <div class="active tab-pane" id="activity">
-                                                                    <form class="form-horizontal" action="{{ route('student.store') }}" method="post">
-                                                                        @csrf
-
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Домашний телефон</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="home_phone" value="{{ old('home_phone') }}" class="form-control" id="inputName" placeholder="+7 (XXX) XXXXXXX">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Мобильный телефон</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="mob_phone" value="{{ old('mob_phone') }}" class="form-control" id="mob_phone" placeholder="+7 (XXX) XXXXXXX">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Почта</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="email" name="email" value="{{ old('email') }}" class="form-control" id="mob_phone" placeholder="Почта">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Дополнительная почта</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="email" name="second_email" value="{{ old('second_email') }}" class="form-control" id="mob_phone" placeholder="Дополнительная почта">
-                                                                            </div>
-                                                                        </div>
-                                                                        <hr>
-                                                                        <div class="form-group row">
-                                                                            <div class="offset-sm-2 col-sm-10">
-                                                                                <button type="submit" class="btn btn-danger">Добавить</button>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </form>
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                                <div class="tab-pane" id="timeline">
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-
-                                                                <div class="tab-pane" id="settings">
-                                                                    <div class="col-md-3">
-
-                                                                        <!-- Profile Image -->
-                                                                        <div class="card card-primary card-outline">
-                                                                            <div class="card-body box-profile">
-                                                                                <div class="text-center mb-3">
-                                                                                    <img class="profile-user-img img-fluid img-circle"
-                                                                                         src="{{ asset('images/def_user.png') }}"
-                                                                                         alt="User profile picture">
-                                                                                </div>
-
-                                                                                <a href="#" class="btn btn-primary btn-block"><b>Обновить</b></a>
-                                                                            </div>
-                                                                            <!-- /.card-body -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.col -->
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                            </div>
-                                                            <!-- /.tab-content -->
-                                                        </div><!-- /.card-body -->
-                                                    </div>
-                                                    <!-- /.card -->
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="custom-tabs-four-profession" role="tabpanel" aria-labelledby="custom-tabs-four-profession-tab">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="tab-content">
-                                                                <div class="active tab-pane" id="activity">
-                                                                    <form class="form-horizontal" action="{{ route('student.store') }}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Дата поступления</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата поступления">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Академическая степень</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="degree_type_id" id="degree_type_id" class="form-control" style="width: 100%;">
-                                                                                    <option value="">Выберите</option>
-                                                                                    @foreach($degree_types as $degree_type)
-                                                                                        <option value="{{ $degree_type->id }}" {{ old('degree_type_id')==$degree_type->id ? 'selected':'' }}>{{$degree_type->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Форма обучения</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="studyform_id" id="studyform_id" class="form-control" style="width: 100%;">
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Специальность/Группа образовательных программ</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="profession_id" id="profession_id" class="form-control select2" style="width: 100%;">
-{{--                                                                                    @foreach($professions as $profession)--}}
-{{--                                                                                        <option value="{{ $profession->id }}" {{ old('profession_id')==$profession->id ? 'selected':'' }}>{{$profession->professionCode}} - {{$profession->name}}</option>--}}
-{{--                                                                                    @endforeach--}}
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Специализация/Образовательная программа</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="specialization_id" id="specialization_id" class="form-control select2" style="width: 100%;">
-
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Язык обучения</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="center_studylanguage_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                    @foreach($center_studylanguages as $center_studylanguage)
-                                                                                        <option value="{{ $center_studylanguage->id }}" {{ old('center_studylanguage_id')==$center_studylanguage->id ? 'selected':'' }}>{{$center_studylanguage->name}}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Курс</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="course_id" id="course_id" class="form-control" style="width: 100%;">
-
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Группа</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="group_id" id="group_id" class="form-control select2" style="width: 100%;">
-
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Форма оплаты</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="paymentform_id" id="paymentform_id" class="form-control" style="width: 100%;">
-                                                                                    <option value="">Выберите</option>
-                                                                                    @foreach($paymentforms as $paymentform)
-                                                                                        <option value="{{ $paymentform->id }}" {{ old('paymentform_id')==$paymentform->id ? 'selected':'' }}>{{$paymentform->name}}</option>
-                                                                                    @endforeach
-
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div id="fin_id">
-                                                                            <div class="form-group row">
-                                                                                <label for="inputName" class="col-sm-2 col-form-label">Вид финансирования</label>
-                                                                                <div class="col-sm-10">
-                                                                                    <select name="finance_type_id" id="finance_type_id" class="form-control" style="width: 100%;">
-
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div id="is_fin_id">
-                                                                            <div class="form-group row">
-                                                                                <label for="inputName" class="col-sm-2 col-form-label">Источник финансирования</label>
-                                                                                <div class="col-sm-10">
-                                                                                    <select name="is_finance_type_id" id="is_finance_type_id" class="form-control" style="width: 100%;">
-
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div id="gos_id">
-                                                                            <div class="form-group row">
-                                                                                <label for="inputName" class="col-sm-2 col-form-label">Государственный орган</label>
-                                                                                <div class="col-sm-10">
-                                                                                    <select name="publicAuthorityGrant" id="publicAuthorityGrant_id" class="form-control" style="width: 100%;">
-
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div id="prav_id">
-                                                                            <div class="form-group row">
-                                                                                <label for="inputName" class="col-sm-2"></label>
-                                                                                <div class="col-sm-10 custom-control custom-checkbox">
-                                                                                    <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
-                                                                                    <label for="customCheckbox1" class="custom-control-label">Межправительственный грант</label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div id="kvo_id">
-                                                                            <div class="form-group row">
-                                                                                <label for="inputName" class="col-sm-2 col-form-label">Обучение по квоте</label>
-                                                                                <div class="col-sm-10">
-                                                                                    <select name="kvota_id" id="kvota_id" class="form-control" style="width: 100%;">
-
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div id="svi_id1">
-                                                                            <div class="form-group row">
-                                                                                <label for="inputName" class="col-sm-2">Серия свидетельства о гранте</label>
-                                                                                <div class="col-sm-10">
-                                                                                    <input type="text" name="shifr_student1" value="{{ old('shifr_student1') }}" class="form-control" id="reg_nom_trans" placeholder="Серия свидетельства о гранте">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div id="svi_id2">
-                                                                            <div class="form-group row">
-                                                                                <label for="inputName" class="col-sm-2">Номер свидетельства о гранте</label>
-                                                                                <div class="col-sm-10">
-                                                                                    <input type="text" name="shifr_student2" value="{{ old('shifr_student2') }}" class="form-control" id="reg_nom_trans" placeholder="Номер свидетельства о гранте">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div id="svi_id3">
-                                                                            <div class="form-group row">
-                                                                                <label for="inputName" class="col-sm-2">Дата присуждения гранта</label>
-                                                                                <div class="col-sm-10">
-                                                                                    <input type="date" name="give_date_student" value="{{ old('give_date_student') }}" class="form-control" id="inputName" placeholder="Дата выдачи обучающемуся">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <hr>
-
-
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Шифр обучающегося</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Шифр обучающегося">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Дата выдачи обучающемуся</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="date" name="give_date_student" value="{{ old('give_date_student') }}" class="form-control" id="inputName" placeholder="Дата выдачи обучающемуся">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2">Регистрационный номер транскрипта</label>
-                                                                            <div class="col-sm-10">
-                                                                                <input type="text" name="reg_nom_trans" value="{{ old('reg_nom_trans') }}" class="form-control" id="reg_nom_trans" placeholder="Регистрационный номер транскрипта">
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <hr>
-                                                                        <div class="form-group row">
-                                                                            <div class="offset-sm-2 col-sm-10">
-                                                                                <button type="submit" class="btn btn-danger">Добавить</button>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </form>
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                                <div class="tab-pane" id="timeline">
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-
-                                                                <div class="tab-pane" id="settings">
-                                                                    <div class="col-md-3">
-
-                                                                        <!-- Profile Image -->
-                                                                        <div class="card card-primary card-outline">
-                                                                            <div class="card-body box-profile">
-                                                                                <div class="text-center mb-3">
-                                                                                    <img class="profile-user-img img-fluid img-circle"
-                                                                                         src="{{ asset('images/def_user.png') }}"
-                                                                                         alt="User profile picture">
-                                                                                </div>
-
-                                                                                <a href="#" class="btn btn-primary btn-block"><b>Обновить</b></a>
-                                                                            </div>
-                                                                            <!-- /.card-body -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.col -->
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                            </div>
-                                                            <!-- /.tab-content -->
-                                                        </div><!-- /.card-body -->
-                                                    </div>
-                                                    <!-- /.card -->
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="custom-tabs-four-education" role="tabpanel" aria-labelledby="custom-tabs-four-education-tab">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="tab-content">
-                                                                <div class="active tab-pane" id="activity">
-                                                                    <form class="form-horizontal" action="{{ route('student.store') }}" method="post">
-                                                                        @csrf
-                                                                        <div class="form-group row">
-                                                                            <label for="inputName" class="col-sm-2 col-form-label">Закончил образовательное учреждение</label>
-                                                                            <div class="col-sm-10">
-                                                                                <select name="education_type_id" id="education_type_id" class="form-control" style="width: 100%;">
-                                                                                    <option value="0">Выберите</option>
-                                                                                    <option value="1">Школа</option>
-                                                                                    <option value="2">Колледж</option>
-                                                                                    <option value="3">ВУЗ</option>
-                                                                                    <option value="4">Другое учреждение</option>
-
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="card" id="school_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Школа</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Страна, в которой закончил учебное заведение</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="сitizenship_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                            @foreach($сitizenships as $сitizenship)
-                                                                                                <option value="{{ $сitizenship->id }}" {{ old('сitizenship_id')==$сitizenship->id ? 'selected':'' }}>{{$сitizenship->name}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Место окончания школы</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="residence_state_id" id="" class="form-control" style="width: 100%;">
-                                                                                            @foreach($residence_states as $residence_state)
-                                                                                                <option value="{{ $residence_state->id }}" {{ old('residence_state_id')==$residence_state->id ? 'selected':'' }}>{{$residence_state->name}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Населенный пункт учебного заведения</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Населенный пункт учебного заведения">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Название (номер) учебного заведения, которое окончил</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="сitizenship_id" id="" class="form-control" style="width: 100%;">
-                                                                                            <option value="">---</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName2" class="col-sm-2">Наименование образовательного учреждения</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <textarea class="form-control" name="address_home" rows="2" placeholder="Наименование образовательного учреждения"></textarea>
-                                                                                    </div>
-                                                                                </div>
-
-
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="university_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">ВУЗ</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">ВУЗ</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="" id="" class="form-control" style="width: 100%;">
-                                                                                            <option value="">Выберите</option>
-                                                                                            <option value="1">Отечественный ВУЗ</option>
-                                                                                            <option value="2">Зарубежный ВУЗ</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="other_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Другое учреждение</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Страна, в которой закончил учебное заведение</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="сitizenship_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                            @foreach($сitizenships as $сitizenship)
-                                                                                                <option value="{{ $сitizenship->id }}" {{ old('сitizenship_id')==$сitizenship->id ? 'selected':'' }}>{{$сitizenship->name}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName2" class="col-sm-2">Наименование образовательного учреждения</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <textarea class="form-control" name="address_home" rows="2" placeholder="Наименование образовательного учреждения"></textarea>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Наименование специальности образовательного учреждения</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Наименование специальности образовательного учреждения">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="certificate_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Аттестат о среднем образовании</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Серия свидетельства</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="Серия свидетельства" placeholder="Населенный пункт учебного заведения">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Номер свидетельства</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="Номер свидетельства" placeholder="Населенный пункт учебного заведения">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Дата выдачи</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата выдачи">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Средний балл аттестата</label>
-                                                                                    <div class="col-sm-8">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="Номер свидетельства" placeholder="Средний балл аттестата">
-                                                                                    </div>
-                                                                                    <div class="col-sm-2">
-                                                                                        <button type="button" class="btn btn-success">Рассчитать</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2"></label>
-                                                                                    <div class="col-sm-3 custom-control custom-checkbox">
-                                                                                        <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
-                                                                                        <label for="customCheckbox1" class="custom-control-label">Аттестат (диплом) с отличием</label>
-                                                                                    </div>
-                                                                                    <div class="col-sm-3 custom-control custom-checkbox">
-                                                                                        <input class="custom-control-input" type="checkbox" id="customCheckbox2"        >
-                                                                                        <label for="customCheckbox2" class="custom-control-label">Алтын белги</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="admission_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Тип поступления</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Тип поступления</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="admissions_type_id" id="admissions_type_id" class="form-control" style="width: 100%;">
-                                                                                            <option value="0">Выберите</option>
-                                                                                            <option value="1">ЕНТ/КТ</option>
-                                                                                            <option value="2">Собеседование</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="unt_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Данные по сертификату ЕНТ/КТ</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Номер сертификата ЕНТ/КТ</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Номер сертификата ЕНТ/КТ">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Серия сертификата</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Номер сертификата ЕНТ/КТ">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Индивидуальный код тестируемого</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Номер сертификата ЕНТ/КТ">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Дата выдачи сертификата ЕНТ/КТ</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата выдачи">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Язык сдачи экзамена</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="" id="" class="form-control" style="width: 100%;">
-                                                                                            <option value="0">Выберите</option>
-                                                                                            <option value="1">Русский</option>
-                                                                                            <option value="2">Казахский</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="interview_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Данные по собеседованию</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Номер протокола</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="0">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Дата протокола</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата выдачи">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Оценка по результатам собеседования</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="0">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Результат собеседования</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="" id="" class="form-control" style="width: 100%;">
-                                                                                            <option value="1">Пройдено</option>
-                                                                                            <option value="2">Не пройдено</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="college_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Колледж</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Страна, в которой закончил учебное заведение</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="сitizenship_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                            @foreach($сitizenships as $сitizenship)
-                                                                                                <option value="{{ $сitizenship->id }}" {{ old('сitizenship_id')==$сitizenship->id ? 'selected':'' }}>{{$сitizenship->name}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Место окончания школы</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="residence_state_id" id="" class="form-control" style="width: 100%;">
-                                                                                            @foreach($residence_states as $residence_state)
-                                                                                                <option value="{{ $residence_state->id }}" {{ old('residence_state_id')==$residence_state->id ? 'selected':'' }}>{{$residence_state->name}}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Населенный пункт учебного заведения</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Населенный пункт учебного заведения">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Название (номер) учебного заведения, которое окончил</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="сitizenship_id" id="" class="form-control" style="width: 100%;">
-                                                                                            <option value="">---</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName2" class="col-sm-2">Наименование образовательного учреждения</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <textarea class="form-control" name="address_home" rows="2" placeholder="Наименование образовательного учреждения"></textarea>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Специальность/Группа образовательных программ</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="сitizenship_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                            <option value="">Выберите</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Квалификация</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="сitizenship_id" id="" class="form-control select2" style="width: 100%;">
-                                                                                            <option value="">Выберите</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Дата решения квалификационной комиссии</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата выдачи">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="admission_college_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Тип поступления</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Тип поступления</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="admissions_type_id" id="admissions_college_type_id" class="form-control" style="width: 100%;">
-                                                                                            <option value="0">Выберите</option>
-                                                                                            <option value="1">ЕНТ/КТ</option>
-                                                                                            <option value="2">Собеседование</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="unt_college_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Данные по сертификату ЕНТ/КТ</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Номер сертификата ЕНТ/КТ</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Номер сертификата ЕНТ/КТ">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Серия сертификата</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Номер сертификата ЕНТ/КТ">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Индивидуальный код тестируемого</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Номер сертификата ЕНТ/КТ">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Дата выдачи сертификата ЕНТ/КТ</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата выдачи">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Язык сдачи экзамена</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="" id="" class="form-control" style="width: 100%;">
-                                                                                            <option value="0">Выберите</option>
-                                                                                            <option value="1">Русский</option>
-                                                                                            <option value="2">Казахский</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="interview_college_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Данные по собеседованию</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Номер протокола</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="0">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Дата протокола</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата выдачи">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Оценка по результатам собеседования</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="0">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Результат собеседования</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <select name="" id="" class="form-control" style="width: 100%;">
-                                                                                            <option value="1">Пройдено</option>
-                                                                                            <option value="2">Не пройдено</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card" id="diploma_view">
-                                                                            <div class="card-header">
-                                                                                <h3 class="card-title">Диплом</h3>
-                                                                                <div class="card-tools">
-                                                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Серия диплома</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="" placeholder="Серия диплома">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2">Номер диплома</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="" placeholder="Серия диплома">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="inputName" class="col-sm-2 col-form-label">Дата выдачи диплома</label>
-                                                                                    <div class="col-sm-10">
-                                                                                        <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата выдачи">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-
-
-
-{{--                                                                        <div class="form-group row">--}}
-{{--                                                                            <label for="inputName" class="col-sm-2 col-form-label">№ свидетельства о нострификации</label>--}}
-{{--                                                                            <div class="col-sm-10">--}}
-{{--                                                                                <input type="text" name="shifr_student" value="{{ old('shifr_student') }}" class="form-control" id="reg_nom_trans" placeholder="Шифр обучающегося">--}}
-{{--                                                                            </div>--}}
-{{--                                                                        </div>--}}
-
-
-{{--                                                                        <div class="form-group row">--}}
-{{--                                                                            <label for="inputName" class="col-sm-2 col-form-label">Дата свидетельства о нострификации</label>--}}
-{{--                                                                            <div class="col-sm-10">--}}
-{{--                                                                                <input type="date" name="admission_date" value="{{ old('admission_date') }}" class="form-control" id="inputName" placeholder="Дата поступления">--}}
-{{--                                                                            </div>--}}
-{{--                                                                        </div>--}}
-
-                                                                        <hr>
-                                                                        <div class="form-group row">
-                                                                            <div class="offset-sm-2 col-sm-10">
-                                                                                <button type="submit" class="btn btn-danger">Добавить</button>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                    </form>
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                                <div class="tab-pane" id="timeline">
-
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-
-                                                                <div class="tab-pane" id="settings">
-                                                                    <div class="col-md-3">
-
-                                                                        <!-- Profile Image -->
-                                                                        <div class="card card-primary card-outline">
-                                                                            <div class="card-body box-profile">
-                                                                                <div class="text-center mb-3">
-                                                                                    <img class="profile-user-img img-fluid img-circle"
-                                                                                         src="{{ asset('images/def_user.png') }}"
-                                                                                         alt="User profile picture">
-                                                                                </div>
-
-                                                                                <a href="#" class="btn btn-primary btn-block"><b>Обновить</b></a>
-                                                                            </div>
-                                                                            <!-- /.card-body -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.col -->
-                                                                </div>
-                                                                <!-- /.tab-pane -->
-                                                            </div>
-                                                            <!-- /.tab-content -->
-                                                        </div><!-- /.card-body -->
-                                                    </div>
-                                                    <!-- /.card -->
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="custom-tabs-four-musa" role="tabpanel" aria-labelledby="custom-tabs-four-musa-tab">
-                                            Musa.
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="inactive" {{(old('status') == 'inactive') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio2">Нет</label>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /.card -->
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">ИИН</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control @error('iin') is-invalid @enderror"
+                                               name="iin" value="{{ old('iin') }}" id="kt_inputmask_iin">
+                                        @error('iin')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Дата рождения</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" name="birthdate"
+                                               value="{{ old('birthdate') }}">
+                                        @error('birthdate')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Пол</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="gender_id" id="gender_id">
+                                            <option value="">Выберите</option>
+                                            @foreach($genders as $gender)
+                                                <option
+                                                    value="{{ $gender->id }}" {{ old('gender_id')==$gender->id ? 'selected':'' }}>{{$gender->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('gender_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Семейное положение</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="family_status_id" id="family_status_id">
+                                            @if(!is_null(old('gender_id')))
+                                                @if(!is_null(old('family_status_id')))
+                                                    @if(old('gender_id')==1)
+                                                        {{ $family_statuses= App\Models\Family_status::whereIn('id', [3,4])->select('id', 'nameru as name')->get() }}
+                                                    @elseif(old('gender_id')==2)
+                                                        {{ $family_statuses= App\Models\Family_status::whereIn('id', [1,2])->select('id', 'nameru as name')->get() }}
+                                                    @endif
+                                                    @foreach($family_statuses as $family_status)
+                                                        <option
+                                                            value="{{ $family_status->id }}" {{ old('family_status_id')==$family_status->id ? 'selected':'' }}>{{$family_status->name}}</option>
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Национальность</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="nationality_id">
+                                            <option value="" selected="selected">Выберите</option>
+                                            @foreach($nationalities as $nationality)
+                                                <option
+                                                    value="{{ $nationality->id }}" {{ old('nationality_id')==$nationality->id ? 'selected':'' }}>{{$nationality->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Гражданство</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="citizenship_id" id="citizenship_id">
+                                            @foreach($citizenships as $citizenship)
+                                                <option
+                                                    value="{{ $citizenship->id }}" {{ old('citizenship_id')==$citizenship->id ? 'selected':'' }}>{{$citizenship->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('citizenship_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Область, откуда прибыл</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="main_region_id" id="main_region_id">
+                                            <option value="0">Выберите область/город</option>
+                                            @foreach($all_regions as $all_region)
+                                                <option value="{{ $all_region->id }}" {{ old('main_region_id')==$all_region->id ? 'selected':'' }}>
+                                                    {{ $all_region->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Районный центр, откуда прибыл</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="region_id" id="region_id">
+                                            @if(!is_null(old('main_region_id')))
+                                                @if(!is_null(old('region_id')))
+                                                    {{ $all_sub_regions= App\Models\All_region::with('children')->where('parent_id','=',old('main_region_id'))->get() }}
+                                                    @foreach($all_sub_regions as $all_sub_region)
+                                                        <option value="{{ $all_sub_region->id }}" {{ old('region_id')==$all_sub_region->id ? 'selected':'' }}>{{$all_sub_region->nameru}}</option>
+                                                        @if($all_sub_region->children)
+                                                            @foreach($all_sub_region->children as $all_sub_region)
+                                                                <option value="{{ $all_sub_region->id }}" {{ old('region_id')==$all_sub_region->id ? 'selected':'' }}>-{{$all_sub_region->nameru}}</option>
+                                                                @if($all_sub_region->children)
+                                                                    @foreach($all_sub_region->children as $all_sub_region)
+                                                                        <option value="{{ $all_sub_region->id }}" {{ old('region_id')==$all_sub_region->id ? 'selected':'' }}>--{{$all_sub_region->nameru}}</option>
+                                                                        @if($all_sub_region->children)
+                                                                            @foreach($all_sub_region->children as $all_sub_region)
+                                                                                <option value="{{ $all_sub_region->id }}" {{ old('region_id')==$all_sub_region->id ? 'selected':'' }}>---{{$all_sub_region->nameru}}</option>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        </select>
+                                        @error('region_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Адрес проживания</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="living_address" value="{{ old('living_address') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Общежитие</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="hostel" value="1" {{(old('hostel') == '1') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio1">Да</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="hostel" id="inlineRadio2" value="0" {{(old('hostel') == '0') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio2">Нет</label>
+                                        </div>
+                                        @error('hostel')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Сирота</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="orphan" value="1" {{(old('orphan') == '1') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio1">Да</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="orphan" value="0" {{(old('orphan') == '0') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio2">Нет</label>
+                                        </div>
+                                        @error('orphan')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Ребенок, оставшийся без попечения
+                                        родителей</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="child_without" value="1" {{(old('child_without') == '1') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio1">Да</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="child_without" value="0" {{(old('child_without') == '0') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio2">Нет</label>
+                                        </div>
+                                        @error('child_without')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Инвалид</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="disabled_person" value="1" {{(old('disabled_person') == '1') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio1">Да</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="disabled_person" value="0" {{(old('disabled_person') == '0') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio2">Нет</label>
+                                        </div>
+                                        @error('disabled_person')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Обучается на военной кафедре</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="studying_military" value="1" {{(old('studying_military') == '1') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio1">Да</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="studying_military" value="0" {{(old('studying_military') == '0') ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="inlineRadio2">Нет</label>
+                                        </div>
+                                        @error('studying_military')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-document" role="tabpanel"
+                                 aria-labelledby="nav-document-tab">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Документ, удостоверяющий личность</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="identity_document_id"
+                                                id="identity_document_id">
+                                            <option value="">Выберите</option>
+                                            @foreach($identity_documents as $identity_document)
+                                                <option
+                                                    value="{{ $identity_document->id }}" {{ old('identity_document_id')==$identity_document->id ? 'selected':'' }}>{{$identity_document->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Номер документа, удостоверяющего
+                                        личность</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="doc_number" value="{{ old('doc_number') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Серия документа, удостоверяющего
+                                        личность</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="doc_ser" value="{{ old('doc_ser') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Дата выдачи документа, удостоверяющего
+                                        личность</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" name="doc_give_date" value="{{ old('doc_give_date') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Срок действия документа, удостоверяющего
+                                        личность</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" name="doc_end_date" value="{{ old('doc_end_date') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Выбрать орган, выдавший документ,
+                                        удостоверяющий личность</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="doc_organ_id">
+                                            <option value="">Выберите</option>
+                                            @foreach($sel_identity_documents as $sel_identity_document)
+                                                <option
+                                                    value="{{ $sel_identity_document->id }}" {{ old('sel_identity_document')==$sel_identity_document->id ? 'selected':'' }}>{{$sel_identity_document->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Вложение (прикрепите скан копию документа,
+                                        удостоверяющего личность: где ФИО)</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control" name="ud_scan" value="{{ old('ud_scan') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Вложение (прикрепите скан копию документа,
+                                        аттестата о среднем (полном) образовании)</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control" name="at_scan" value="{{ old('at_scan') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profession_info" role="tabpanel"
+                                 aria-labelledby="nav-profession_info-tab">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Дата поступления</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" name="admission_date"
+                                               value="{{ old('admission_date') }}">
+                                        @error('admission_date')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Образование при поступлении</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="education_admission_id" id="education_admission_id">
+                                            <option value="">Выберите</option>
+                                            @foreach($education_admissions as $education_admission)
+                                                <option value="{{ $education_admission->id }}" {{ old('education_admission_id')==$education_admission->id ? 'selected':'' }}>{{$education_admission->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('education_admission_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Уровень образования (Академическая степень)</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="degree_type_id" id="degree_type_id">
+                                            @if(!is_null(old('education_admission_id')))
+                                                @if(!is_null(old('degree_type_id')))
+                                                    @if(old('education_admission_id')==1 || old('education_admission_id')==2 || old('education_admission_id')==3)
+                                                        {{ $degree_types=App\Models\Degree_type::whereIn('id',[1,8])->select('id', 'nameru as name')->get() }}
+                                                    @elseif(old('education_admission_id')==4 || old('education_admission_id')==5)
+                                                        {{ $degree_types=App\Models\Degree_type::whereIn('id',[2,3,4,5,6,7])->select('id', 'nameru as name')->get() }}
+                                                    @endif
+                                                    @foreach($degree_types as $degree_type)
+                                                        <option
+                                                            value="{{ $degree_type->id }}" {{ old('degree_type_id')==$degree_type->id ? 'selected':'' }}>{{$degree_type->name}}</option>
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        </select>
+                                        @error('degree_type_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Форма обучения</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="studyform_id" id="studyform_id">
+                                            @if(!is_null(old('degree_type_id')))
+                                                @if(!is_null(old('studyform_id')))
+                                                    {{ $studyforms=App\Models\Studyform::where('degree_type_id',old('degree_type_id'))->select('id', 'nameru as name')->get() }}
+                                                    @foreach($studyforms as $studyform)
+                                                        <option
+                                                            value="{{ $studyform->id }}" {{ old('studyform_id')==$studyform->id ? 'selected':'' }}>{{$studyform->name}}</option>
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        </select>
+                                        @error('studyform_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Изученный иностранный язык в школе</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="foreign_lan_school_id">
+                                            <option value="">Выберите</option>
+                                            @foreach($foreign_lan_schools as $foreign_lan_school)
+                                                <option
+                                                    value="{{ $foreign_lan_school->id }}" {{ old('foreign_lan_school_id')==$foreign_lan_school->id ? 'selected':'' }}>{{$foreign_lan_school->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('foreign_lan_school_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Специальность/Группа образовательных программ</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="profession_id" id="profession_id">
+                                            @if(!is_null(old('degree_type_id')))
+                                                @if(!is_null(old('studyform_id')))
+                                                    {{ $degree_type=App\Models\Degree_type::find(old('degree_type_id')) }}
+                                                    @foreach($degree_type->professions as $profession)
+                                                        <option
+                                                            value="{{ $profession->id }}" {{ old('profession_id')==$profession->id ? 'selected':'' }}>{{$profession->code}}-{{$profession->nameru}}</option>
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        </select>
+                                        @error('profession_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Специализация/Образовательная программа</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="specialization_id" id="specialization_id">
+                                            @if(!is_null(old('profession_id')))
+                                                @if(!is_null(old('specialization_id')))
+                                                    {{ $specializations=App\Models\Specialization::where('profession_id','=',old('profession_id'))->select('id', 'nameru as name', 'specializationCode')->get() }}
+                                                    @foreach($specializations as $specialization)
+                                                        <option
+                                                            value="{{ $specialization->id }}" {{ old('specialization_id')==$specialization->id ? 'selected':'' }}>{{$specialization->name}}</option>
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        </select>
+                                        @error('specialization_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Язык обучения</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="center_studylanguage_id">
+                                            <option value="">Выберите</option>
+                                            @foreach($center_studylanguages as $center_studylanguage)
+                                                <option
+                                                    value="{{ $center_studylanguage->id }}" {{ old('center_studylanguage_id')==$center_studylanguage->id ? 'selected':'' }}>{{$center_studylanguage->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('center_studylanguage_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Курс обучения</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="course_id" id="course_id">
+                                            @if(!is_null(old('studyform_id')))
+                                                @if(!is_null(old('course_id')))
+                                                    {{ $studyform_courses=App\Models\Studyform_course::where('studyform_id','=',old('studyform_id'))->get() }}
+                                                    @foreach($studyform_courses as $studyform_course)
+                                                        <option
+                                                            value="{{ $studyform_course->id }}" {{ old('course_id')==$studyform_course->id ? 'selected':'' }}>{{$studyform_course->course_number}}</option>
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        </select>
+                                        @error('course_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Группа</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="group_id" id="group_id">
+                                            @if(!is_null(old('specialization_id')))
+                                                @if(!is_null(old('group_id')))
+                                                    {{ $groups=App\Models\Group::where('specialization_id','=',old('specialization_id'))->get() }}
+                                                    @foreach($groups as $group)
+                                                        <option
+                                                            value="{{ $group->id }}" {{ old('group_id')==$group->id ? 'selected':'' }}>{{$group->name}}</option>
+                                                    @endforeach
+                                                @endif
+                                            @endif
+                                        </select>
+                                        @error('group_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Обучение за счет средств (Форма оплаты)</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="paymentform_id">
+                                            <option value="">Выберите</option>
+                                            @foreach($paymentforms as $paymentform)
+                                                <option
+                                                    value="{{ $paymentform->id }}" {{ old('paymentform_id')==$paymentform->id ? 'selected':'' }}>{{$paymentform->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('paymentform_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label required">Обучается по квоте</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="benefit_id">
+                                            <option value="">Выберите</option>
+                                            @foreach($benefits as $benefit)
+                                                <option
+                                                    value="{{ $benefit->id }}" {{ old('benefit_id')==$benefit->id ? 'selected':'' }}>{{$benefit->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('benefit_id')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Номер свидетельства о гранте</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="grant_cer_number"
+                                               value="{{ old('grant_cer_number') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Серия свидетельства о гранте</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="grant_cer_ser"
+                                               value="{{ old('grant_cer_ser') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Дата присуждения гранта</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" name="grant_give_date"
+                                               value="{{ old('grant_give_date') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                 aria-labelledby="nav-contact-tab">
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Домашний телефон</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="home_phone"
+                                               value="{{ old('home_phone') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Мобильный телефон</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="mobile_phone"
+                                               value="{{ old('mobile_phone') }}" id="kt_inputmask_phone">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Почта</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" name="email"
+                                               value="{{ old('email') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">№ студенческого билета</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="book_number"
+                                               value="{{ old('book_number') }}">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Фото (аватар)</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control" name="photo" value="{{ old('photo') }}">
+                                        @error('photo')
+                                        <div class="text-danger"><small>{{ $message }}</small></div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="offset-sm-2 col-sm-10">
+                                    <button type="submit" class="btn btn-sm btn-success">Сохранить</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    </form>
                 </div>
             </div>
+            <!--end::Invoice 2 main-->
         </div>
-    </section>
+        <!--end::Container-->
+    </div>
+    <!--end::Post-->
+
 @endsection
 
 @section('script')
     <script>
-        $(function() {
-            $("#region_id").change(function(){
-                var regionID = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(regionID){
-                    $.ajax({
-                        url:"{{ route('get_by_region') }}",
-                        type:"post",
-                        data: {_token:_token, rid:regionID},
-                        success:function(response){
-                            // $.each(response.data, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#region_code_id').html(response);
+        var OldValue = '{{ old('family_status_id') }}';
+        if(OldValue !== '') {
+            $('#family_status_id').val(OldValue );
+        }
+        $("#gender_id").change(function () {
+            var gender_id = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (gender_id) {
+                $.ajax({
+                    url: "{{ route('get_by_gender_s') }}",
+                    type: "post",
+                    data: {_token: _token, gender_id: gender_id},
+                    success: function (response) {
+                        if(response.error){
+                            $('#family_status_id').val(gender_id);
                         }
-                    });
-                }
-            });
-            $("#profession_id").change(function(){
-                var professionID = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(professionID){
-                    $.ajax({
-                        url:"{{ route('get_by_profession') }}",
-                        type:"post",
-                        data: {_token:_token, pid:professionID},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#specialization_id').html(response);
+                        else{
+                            $('#family_status_id').html(response);
                         }
-                    });
-                }
-            });
-            $("#specialization_id").change(function(){
-                var specializationID = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(specializationID){
-                    $.ajax({
-                        url:"{{ route('get_by_specialization') }}",
-                        type:"post",
-                        data: {_token:_token, sid:specializationID},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#group_id').html(response);
-                        }
-                    });
-                }
-            });
-            $("#degree_type_id").change(function(){
-                var degree_type_id = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(degree_type_id){
-                    $.ajax({
-                        url:"{{ route('get_by_degree') }}",
-                        type:"post",
-                        data: {_token:_token, degid:degree_type_id},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#studyform_id').html(response);
-                        }
-                    });
-                }
-            });
-            $("#degree_type_id").change(function(){
-                var degree_type_id1 = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(degree_type_id1){
-                    $.ajax({
-                        url:"{{ route('get_by_degree_profession') }}",
-                        type:"post",
-                        data: {_token:_token, degreegid:degree_type_id1},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#profession_id').html(response);
-                        }
-                    });
-                }
-            });
 
-            $("#studyform_id").change(function(){
-                var studyform_id = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(studyform_id){
-                    $.ajax({
-                        url:"{{ route('get_by_studyform') }}",
-                        type:"post",
-                        data: {_token:_token, studyform_id:studyform_id},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#course_id').html(response);
-                        }
-                    });
-                }
-            });
-            $("#paymentform_id").change(function(){
-                var paymentform_id = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(paymentform_id){
-                    $.ajax({
-                        url:"{{ route('get_by_paymentform') }}",
-                        type:"post",
-                        data: {_token:_token, paymentform_id:paymentform_id},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#finance_type_id').html(response);
-                        }
-                    });
-                }
-            });
+                    }
+                });
+            }
+        });
+        $("#сitizenship_id").change(function () {
+            var сitizenship_id = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (сitizenship_id == 1) {
+                $('#iin_kaz').show();
+                $('#iin_other').hide();
+            }
+            if (сitizenship_id != 1) {
+                $('#iin_kaz').hide();
+                $('#iin_other').show();
 
-            $("#finance_type_id").change(function(){
-                var finance_type_id = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(finance_type_id==1){
-                    $.ajax({
-                        url:"{{ route('get_by_gosorgan') }}",
-                        type:"post",
-                        data: {_token:_token, finance_type_id:finance_type_id},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#publicAuthorityGrant_id').html(response);
-                        }
-                    });
-                }
-                if(finance_type_id==4){
-                    $.ajax({
-                        url:"{{ route('get_by_gosorgan_work') }}",
-                        type:"post",
-                        data: {_token:_token, finance_type_id:finance_type_id},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#is_finance_type_id').html(response);
-                        }
-                    });
-                }
-            });
-            $("#paymentform_id").change(function(){
-                var paymentform_id = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(paymentform_id==2){
-                    $.ajax({
-                        url:"{{ route('get_by_gosorgan_kvota') }}",
-                        type:"post",
-                        data: {_token:_token, paymentform_id:paymentform_id},
-                        success:function(response){
-                            // $.each(response.specializations, function(key, value) {
-                            //     console.log( key + " : " + value );
-                            // });
-                            $('#kvota_id').html(response);
-                        }
-                    });
-                }
-            });
+            }
+        });
+        $("#main_region_id").change(function () {
+            var regionID = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (regionID) {
+                $.ajax({
+                    url: "{{ route('get_by_region') }}",
+                    type: "post",
+                    data: {_token: _token, rid: regionID},
+                    success: function (response) {
+                        // $.each(response.data, function(key, value) {
+                        //     console.log( key + " : " + value );
+                        // });
+                        $('#region_id').html(response);
+                    }
+                });
+            }
+        });
 
-            $("#paymentform_id").change(function(){
-                var paymentform_id = $(this).val();
-                if(paymentform_id==1){
-                    $('#fin_id').show();
-                    $('#gos_id').hide();
-                    $('#prav_id').hide();
-                    $('#kvo_id').hide();
-                    $('#svi_id1').hide();
-                    $('#svi_id2').hide();
-                    $('#svi_id3').hide();
-                    $('#is_fin_id').hide();
-                }
-                if(paymentform_id==2){
-                    $('#fin_id').show();
-                    $('#gos_id').hide();
-                    $('#prav_id').hide();
-                    $('#kvo_id').show();
-                    $('#svi_id1').show();
-                    $('#svi_id2').show();
-                    $('#svi_id3').show();
-                    $('#is_fin_id').hide();
-                }
-                if(paymentform_id==3){
-                    $('#fin_id').hide();
-                    $('#gos_id').hide();
-                    $('#prav_id').hide();
-                    $('#kvo_id').hide();
-                    $('#svi_id1').hide();
-                    $('#svi_id2').hide();
-                    $('#svi_id3').hide();
-                    $('#is_fin_id').hide();
-                }
-                if(paymentform_id==0){
-                    $('#fin_id').hide();
-                    $('#gos_id').hide();
-                    $('#prav_id').hide();
-                    $('#kvo_id').hide();
-                    $('#svi_id1').hide();
-                    $('#svi_id2').hide();
-                    $('#svi_id3').hide();
-                    $('#is_fin_id').hide();
-                }
-            });
-            $("#finance_type_id").change(function(){
-                var finance_type_id = $(this).val();
-                if(finance_type_id==1){
-                    $('#fin_id').show();
-                    $('#prav_id').hide();
-                    $('#gos_id').show();
-                    $('#kvo_id').show();
-                    $('#svi_id1').show();
-                    $('#svi_id2').show();
-                    $('#svi_id3').show();
-                    $('#is_fin_id').hide();
-                }
-                if(finance_type_id==6){
-                    $('#fin_id').show();
-                    $('#prav_id').show();
-                    $('#gos_id').hide();
-                    $('#kvo_id').show();
-                    $('#svi_id1').show();
-                    $('#svi_id2').show();
-                    $('#svi_id3').show();
-                    $('#is_fin_id').hide();
-                }
-                if(finance_type_id==4){
-                    $('#fin_id').show();
-                    $('#is_fin_id').show();
-                    $('#prav_id').hide();
-                    $('#gos_id').hide();
-                    $('#kvo_id').hide();
-                    $('#svi_id1').hide();
-                    $('#svi_id2').hide();
-                    $('#svi_id3').hide();
-                }
-                if(finance_type_id==0){
-                    $('#fin_id').hide();
-                    $('#gos_id').hide();
-                    $('#prav_id').hide();
-                    $('#kvo_id').hide();
-                    $('#svi_id1').hide();
-                    $('#svi_id2').hide();
-                    $('#svi_id3').hide();
-                    $('#is_fin_id').hide();
-                }
-            });
+        $("#profession_id").change(function () {
+            var professionID = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (professionID) {
+                $.ajax({
+                    url: "{{ route('get_by_profession') }}",
+                    type: "post",
+                    data: {_token: _token, pid: professionID},
+                    success: function (response) {
+                        // $.each(response.specializations, function(key, value) {
+                        //     console.log( key + " : " + value );
+                        // });
+                        $('#specialization_id').html(response);
+                    }
+                });
+            }
+        });
+        $("#specialization_id").change(function () {
+            var specializationID = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (specializationID) {
+                $.ajax({
+                    url: "{{ route('get_by_specialization') }}",
+                    type: "post",
+                    data: {_token: _token, sid: specializationID},
+                    success: function (response) {
+                        // $.each(response.specializations, function(key, value) {
+                        //     console.log( key + " : " + value );
+                        // });
+                        $('#group_id').html(response);
+                    }
+                });
+            }
+        });
+        {{--$("#paymentform_id").change(function(){--}}
+        {{--    var paymentform_id = $(this).val();--}}
+        {{--    var _token = $("input[name='_token']").val();--}}
+        {{--    if(paymentform_id==2){--}}
+        {{--        $.ajax({--}}
+        {{--            url:"{{ route('get_by_gosorgan_kvota') }}",--}}
+        {{--            type:"post",--}}
+        {{--            data: {_token:_token, paymentform_id:paymentform_id},--}}
+        {{--            success:function(response){--}}
+        {{--                $('#kvota_id').html(response);--}}
+        {{--            }--}}
+        {{--        });--}}
+        {{--    }--}}
+        {{--    else{--}}
+        {{--        $('#kvota_id').html("");--}}
+        {{--    }--}}
+        {{--});--}}
 
-            $("#education_type_id").change(function(){
-                var education_type_id = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(education_type_id==0 ){
-                    $('#school_view').hide();
-                    $('#college_view').hide();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#certificate_view').hide();
-                    $('#admission_view').hide();
-                    $('#unt_view').hide();
-                    $('#interview_view').hide();
-                    $('#diploma_view').hide();
-                    $('#admission_college_view').hide();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
-                }
-                if(education_type_id==1){
-                    $('#school_view').show();
-                    $('#certificate_view').show();
-                    $('#admission_view').show();
-                    $('#unt_view').hide();
-                    $('#interview_view').hide();
-                    $('#college_view').hide();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#diploma_view').hide();
-                    $('#admission_college_view').hide();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
-                }
-                if(education_type_id==2){
-                    $('#college_view').show();
-                    $('#admission_college_view').show();
-                    $('#interview_view').hide();
-                    $('#admission_view').hide();
-                    $('#diploma_view').show();
-                    $('#school_view').hide();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#certificate_view').hide();
-                    $('#unt_view').hide();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
 
-                }
-                if(education_type_id==3){
-                    $('#university_view').show();
-                    $('#school_view').hide();
-                    $('#college_view').hide();
-                    $('#other_view').hide();
-                    $('#certificate_view').hide();
-                    $('#admission_view').hide();
-                    $('#unt_view').hide();
-                    $('#interview_view').show();
-                    $('#diploma_view').show();
+        //education_admission
+        $("#education_admission_id").change(function () {
+            var education_admission_id = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (education_admission_id) {
+                $.ajax({
+                    url: "{{ route('get_by_education_admission') }}",
+                    type: "post",
+                    data: {_token: _token, education_admission_id: education_admission_id},
+                    success: function (response) {
+                        $('#degree_type_id').html(response);
+                    }
+                });
+            }
+        });
 
-                    $('#admission_college_view').hide();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
-                }
-                if(education_type_id==4){
-                    $('#other_view').show();
-                    $('#school_view').hide();
-                    $('#college_view').hide();
-                    $('#university_view').hide();
-                    $('#certificate_view').hide();
-                    $('#admission_view').hide();
-                    $('#unt_view').hide();
-                    $('#interview_view').hide();
-                    $('#diploma_view').show();
+        //
+        $("#degree_type_id").change(function () {
+            var degree_type_id = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (degree_type_id) {
+                $.ajax({
+                    url: "{{ route('get_by_degree') }}",
+                    type: "post",
+                    data: {_token: _token, degid: degree_type_id},
+                    success: function (response) {
+                        // $.each(response.specializations, function(key, value) {
+                        //     console.log( key + " : " + value );
+                        // });
+                        $('#studyform_id').html(response);
+                    }
+                });
+            }
+        });
 
-                    $('#admission_college_view').hide();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
+        //
 
-                }
-            });
-            $("#admissions_type_id").change(function(){
-                var admissions_type_id = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(admissions_type_id==0 ){
-                    $('#school_view').show();
-                    $('#college_view').hide();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#certificate_view').show();
-                    $('#admission_view').show();
-                    $('#unt_view').hide();
-                    $('#interview_view').hide();
-                    $('#diploma_view').hide();
-                    $('#admission_college_view').hide();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
-                }
-                if(admissions_type_id==1){
-                    $('#school_view').show();
-                    $('#certificate_view').show();
-                    $('#admission_view').show();
-                    $('#unt_view').show();
-                    $('#interview_view').hide();
-                    $('#college_view').hide();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#diploma_view').hide();
+        $("#degree_type_id").change(function () {
+            var degree_type_id1 = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (degree_type_id1) {
+                $.ajax({
+                    url: "{{ route('get_by_degree_profession') }}",
+                    type: "post",
+                    data: {_token: _token, degreegid: degree_type_id1},
+                    success: function (response) {
+                        // $.each(response.specializations, function(key, value) {
+                        //     console.log( key + " : " + value );
+                        // });
+                        $('#profession_id').html(response);
+                    }
+                });
+            }
+        });
 
-                    $('#admission_college_view').hide();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
-                }
-                if(admissions_type_id==2){
-                    $('#school_view').show();
-                    $('#certificate_view').show();
-                    $('#admission_view').show();
-                    $('#unt_view').hide();
-                    $('#interview_view').show();
-                    $('#college_view').hide();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#diploma_view').hide();
-                    $('#admission_college_view').hide();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
-                }
-            });
+        //
 
-            $("#admissions_college_type_id").change(function(){
-                var admissions_type_id = $(this).val();
-                var _token = $("input[name='_token']").val();
-                if(admissions_type_id==0 ){
-                    $('#school_view').hide();
-                    $('#college_view').show();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#certificate_view').hide();
-                    $('#admission_view').hide();
-                    $('#unt_view').hide();
-                    $('#interview_view').hide();
-                    $('#diploma_view').show();
-                    $('#admission_college_view').show();
-                    $('#unt_college_view').hide();
-                    $('#interview_college_view').hide();
-                }
-                if(admissions_type_id==1){
-                    $('#school_view').hide();
-                    $('#certificate_view').hide();
-                    $('#admission_view').hide();
-                    $('#unt_view').hide();
-                    $('#interview_view').hide();
-                    $('#college_view').show();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#diploma_view').show();
-
-                    $('#admission_college_view').show();
-                    $('#unt_college_view').show();
-                    $('#interview_college_view').hide();
-                }
-                if(admissions_type_id==2){
-                    $('#school_view').hide();
-                    $('#certificate_view').hide();
-                    $('#admission_view').hide();
-                    $('#unt_view').hide();
-                    $('#interview_view').hide();
-                    $('#college_view').show();
-                    $('#university_view').hide();
-                    $('#other_view').hide();
-                    $('#diploma_view').show();
-
-                    $('#admission_college_view').show();
-                    $('#interview_college_view').show();
-                    $('#unt_college_view').hide();
-
-                }
-            });
-
+        $("#studyform_id").change(function () {
+            var studyform_id = $(this).val();
+            var _token = $("input[name='_token']").val();
+            if (studyform_id) {
+                $.ajax({
+                    url: "{{ route('get_by_studyform') }}",
+                    type: "post",
+                    data: {_token: _token, studyform_id: studyform_id},
+                    success: function (response) {
+                        // $.each(response.specializations, function(key, value) {
+                        //     console.log( key + " : " + value );
+                        // });
+                        $('#course_id').html(response);
+                    }
+                });
+            }
         });
     </script>
 @endsection
-

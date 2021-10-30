@@ -23,49 +23,53 @@ class AuthController extends Controller
     }
     public function login(Request $request){
         $validate=$this->validate($request, [
-            'email'=>'required|email',
+            'login'=>'required',
             'password'=>'required|min:6',
         ]);
         if(auth()->attempt($validate)){
             return redirect()->route('home');
         }
         else{
-            return redirect()->route('login')->withErrors(['email'=>'Пользователь не найден, либо данные введены не правильно']);
+            return redirect()->route('login')->withErrors(['login'=>'Пользователь не найден, либо данные введены не правильно']);
         }
     }
     public function showRegisterForm(){
         return view('auth.register');
     }
 
-    public function register(Request $request){
-
-        $this->validate($request,[
-            'email'=>'required|email|unique:users',
-            'password'=>'required|min:6|confirmed',
-            'lastname'=>'required',
-            'firstname'=>'required',
-            'tel'=>'required',
-            'birthdate'=>'required|date',
-            'iin'=>'required|unique:users'
-        ]);
-        $user=User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'lastname' => $request->lastname,
-            'firstname' => $request->firstname,
-            'patronymic' => $request->patronymic,
-            'tel' => $request->tel,
-            'birthdate' => $request->birthdate,
-            'iin' => $request->iin
-        ]);
-
-        $user->assignRole('adviser');
-        if($user){
-            return redirect()->route('login')->with('info', 'Вы успешно зарегистрировались');
-        }
-        else{
-            return redirect()->back()->with('fail', 'Ошибка');
-        }
-    }
+//    public function register(Request $request){
+//
+//        $this->validate($request,[
+//            'email'=>'required|email|unique:users',
+//            'password'=>'required|min:6|confirmed',
+//            'lastname'=>'required',
+//            'firstname'=>'required',
+//            'tel'=>'required',
+//            'birthdate'=>'required|date',
+//            'iin'=>'required|unique:users'
+//        ]);
+//        $user=User::create([
+//            'email' => $request->email,
+//            'password' => Hash::make($request->password),
+//            'lastname' => $request->lastname,
+//            'firstname' => $request->firstname,
+//            'patronymic' => $request->patronymic,
+//            'tel' => $request->tel,
+//            'birthdate' => $request->birthdate,
+//            'iin' => $request->iin
+//        ]);
+//
+//        $user->assignRole('adviser');
+//        if($user){
+//            return redirect()->route('login')->with('info', 'Вы успешно зарегистрировались');
+//        }
+//        else{
+//            return redirect()->back()->with('fail', 'Ошибка');
+//        }
+//    }
+//    public function username()
+//    {
+//        return 'login';
+//    }
 
 }

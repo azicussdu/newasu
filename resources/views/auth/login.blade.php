@@ -5,62 +5,81 @@
 @endsection
 
 @section('content')
-    <body class="hold-transition login-page">
-    <div class="login-box">
-        <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="{{ route('login') }}" class="h1"><b>AUEZOV</b></a>
+<!--begin::Wrapper-->
+<div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+	<!--begin::Form-->
+	<form class="form w-100"  action="{{ route('login_process') }}" method="POST">
+        @if(Session::has('info'))
+            <div class="alert alert-primary" role="alert">
+                {{ Session::get('info') }}
             </div>
-            <div class="card-body">
-                <p class="login-box-msg">ВХОД</p>
-
-                <form action="{{route('login_process')}}" method="POST">
-                    @if(Session::has('info'))
-                        <div class="alert alert-primary" role="alert">
-                            {{ Session::get('info') }}
-                        </div>
-                    @endif
-                    @if(Session::has('fail'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ Session::get('fail') }}
-                        </div>
-                    @endif
-                    @csrf
-                    <div class="input-group mb-3">
-                        <input type="email" name="email" value="{{ old('email') }}" class="form-control {{ $errors->has('email') ? 'is-invalid':'' }}" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                        @error('email')
-                        <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid':'' }}" placeholder="Пароль">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                        @error('password')
-                        <span id="exampleInputEmail1-error" class="error invalid-feedback">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Войти</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                </form>
+        @endif
+        @if(Session::has('fail'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('fail') }}
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-    </div>
-    </body>
+        @endif
+        @csrf
+		<!--begin::Heading-->
+		<div class="text-center mb-10">
+			<!--begin::Title-->
+			<h1 class="text-dark mb-3">Вход в систему</h1>
+			<!--end::Title-->
+		</div>
+		<!--begin::Heading-->
+		<!--begin::Input group-->
+		<div class="fv-row mb-10">
+			<!--begin::Label-->
+			<label class="form-label fs-6 fw-bolder text-dark">Логин</label>
+			<!--end::Label-->
+			<!--begin::Input-->
+			<input class="form-control form-control-lg form-control-solid {{ $errors->has('login') ? 'is-invalid':'' }}" type="text" name="login" autocomplete="off" />
+			<!--end::Input-->
+            @error('login')
+            <div class="fv-plugins-message-container invalid-feedback">
+                <div data-field="" data-validator="">
+                    {{ $message }}
+                </div>
+            </div>
+            @enderror
+		</div>
+		<!--end::Input group-->
+		<!--begin::Input group-->
+		<div class="fv-row mb-10">
+			<!--begin::Wrapper-->
+			<div class="d-flex flex-stack mb-2">
+				<!--begin::Label-->
+				<label class="form-label fw-bolder text-dark fs-6 mb-0">Пароль</label>
+				<!--end::Label-->
+				<!--begin::Link-->
+				<a href="" class="link-primary fs-6 fw-bolder">Забыли пароль?</a>
+				<!--end::Link-->
+			</div>
+			<!--end::Wrapper-->
+			<!--begin::Input-->
+			<input class="form-control form-control-lg form-control-solid {{ $errors->has('password') ? 'is-invalid':'' }}" type="password" name="password" autocomplete="off" />
+			<!--end::Input-->
+            @error('password')
+            <div class="fv-plugins-message-container invalid-feedback">
+                <div data-field="" data-validator="">
+                    {{ $message }}
+                </div>
+            </div>
+            @enderror
+		</div>
+		<!--end::Input group-->
+		<!--begin::Actions-->
+		<div class="text-center">
+			<!--begin::Submit button-->
+			<button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
+				<span class="indicator-label">Войти</span>
+			</button>
+			<!--end::Submit button-->
+		</div>
+		<!--end::Actions-->
+	</form>
+	<!--end::Form-->
+</div>
+<!--end::Wrapper-->
 
 @endsection

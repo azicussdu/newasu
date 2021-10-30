@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/config', [\App\Http\Controllers\Config\ConfigController::class, 'index']);
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function(){
 
     Route::middleware(['auth', 'PreventBackHistory'])->group(function (){
@@ -28,11 +29,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::post('/register_process', [\App\Http\Controllers\Auth\AuthController::class, 'register'])->name('register_process');
     });
 
-    Route::group(['prefix'=>'admin','middleware'=>['auth','role:super-admin','PreventBackHistory']], function (){
-        Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('admin.main');
-        Route::resource('role', \App\Http\Controllers\Admin\RoleController::class);
-        Route::resource('permission', \App\Http\Controllers\Admin\PermissionController::class);
-    });
+
 
     Route::group(['middleware'=>['auth', 'PreventBackHistory']], function (){
         Route::resource('student', \App\Http\Controllers\Student\StudentController::class);
@@ -44,16 +41,27 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'l
         Route::post('/getStudyForm', [\App\Http\Controllers\Student\StudentController::class, 'get_by_studyform'])->name('get_by_studyform');
         Route::post('/getPaymentForm', [\App\Http\Controllers\Student\StudentController::class, 'get_by_paymentform'])->name('get_by_paymentform');
         Route::post('/getGosorgan', [\App\Http\Controllers\Student\StudentController::class, 'get_by_gosorgan'])->name('get_by_gosorgan');
-        Route::post('/getGosorganKvota', [\App\Http\Controllers\Student\StudentController::class, 'get_by_gosorgan_kvota'])->name('get_by_gosorgan_kvota');
+        //Route::post('/getGosorganKvota', [\App\Http\Controllers\Student\StudentController::class, 'get_by_gosorgan_kvota'])->name('get_by_gosorgan_kvota');
         Route::post('/getGosorganWork', [\App\Http\Controllers\Student\StudentController::class, 'get_by_gosorgan_work'])->name('get_by_gosorgan_work');
+        Route::post('/getByEducationAdmission', [\App\Http\Controllers\Student\StudentController::class, 'get_by_education_admission'])->name('get_by_education_admission');
+        Route::post('/getByGenderS', [\App\Http\Controllers\Student\StudentController::class, 'get_by_gender'])->name('get_by_gender_s');
+
         Route::resource('profession', \App\Http\Controllers\References\ProfessionController::class);
     });
 
     Route::group(['middleware'=>['auth','role:admin','PreventBackHistory']], function (){
+
+    });
+    Route::group([
+        'middleware'=>['auth','role:super-admin','PreventBackHistory']], function (){
+        Route::resource('role', \App\Http\Controllers\Admin\RoleController::class);
+        Route::resource('permission', \App\Http\Controllers\Admin\PermissionController::class);
+    });
+    Route::group([
+        'middleware'=>['auth','role:super-admin|admin','PreventBackHistory']], function (){
         Route::resource('employee', \App\Http\Controllers\Admin\EmployeeController::class);
         Route::post('/getByGender', [\App\Http\Controllers\Admin\EmployeeController::class, 'get_by_gender'])->name('get_by_gender');
-        Route::resource('teacher', \App\Http\Controllers\Admin\TeacherController::class);
-
+        Route::post('/getByRegion', [\App\Http\Controllers\Admin\EmployeeController::class, 'get_by_region'])->name('get_by_region');
     });
 
 });

@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'email', 'password','lastname','firstname','patronymic','tel','birthdate','iin','registration_address','live_address','gender_id','nationality_id','remember_token'
+        'login', 'password','remember_token'
     ];
 
     /**
@@ -41,6 +41,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function getUserName(){
-        return "{$this->lastname} {$this->firstname}";
+        return "";
+    }
+    public function employee(){
+        return $this->hasOne(Employee::class);
     }
 }
